@@ -1,4 +1,5 @@
 import express from 'express'
+import cors from 'cors'
 import db from './db'
 
 // 
@@ -6,6 +7,17 @@ import db from './db'
 const PORT = 3000
 const app = express()
 app.use(express.json())
+
+// CORS configuration
+const corsOptions = {
+  origin: process.env.NODE_ENV === 'production' 
+    ? process.env.FRONTEND_URL || 'https://your-frontend-url.onrender.com'
+    : 'http://localhost:5173',
+  methods: ['GET', 'POST'],
+  allowedHeaders: ['Content-Type']
+}
+
+app.use(cors(corsOptions))
 
 // 
 // Routes //

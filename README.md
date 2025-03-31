@@ -52,23 +52,27 @@ This project can be easily deployed on Render.com. Here's how to deploy both the
 1. Create a new Web Service on Render
 2. Connect your GitHub repository
 3. Set the following:
-   - Build Command: `cd backend && npm install && npm run build`
-   - Start Command: `cd backend && npm start`
+   - Root Directory: `backend`
+   - Build Command: `npm install && npm run build`
+   - Start Command: `npm start`
    - Environment Variables:
      - `NODE_ENV=production`
+     - `FRONTEND_URL=https://your-frontend-url.onrender.com`
 
 ### Frontend Deployment
 
 1. Create a new Static Site on Render
 2. Connect your GitHub repository
 3. Set the following:
-   - Build Command: `cd frontend && npm install && npm run build`
-   - Publish Directory: `frontend/dist`
+   - Root Directory: `frontend`
+   - Build Command: `npm install && npm run build`
+   - Publish Directory: `dist`
    - Environment Variables:
      - `VITE_API_URL=https://your-backend-url.onrender.com`
 
 ### Important Notes
 
 - Make sure to update the `VITE_API_URL` in the frontend deployment to point to your backend URL
+- Make sure to update the `FRONTEND_URL` in the backend deployment to point to your frontend URL
 - The backend uses SQLite, which is suitable for development but consider using a production database like PostgreSQL for production
 - Both services will automatically redeploy when you push to your main branch
