@@ -3,6 +3,7 @@
   "scripts": {
     "dev": "ts-node-dev index.ts",
     "start": "tsc && node dist/index.js",
+    "build": "tsc",
     "test": "vitest"
   },
   "dependencies": {

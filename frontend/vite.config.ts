@@ -7,5 +7,13 @@ export default defineConfig({
     environment: 'jsdom',
     globals: true,
     setupFiles: ['./test.setup.ts']
+  },
+  server: {
+    proxy: {
+      '/api': {
+        target: process.env.VITE_API_URL || 'http://localhost:3000',
+        changeOrigin: true,
+      },
+    },
   }
 }) 

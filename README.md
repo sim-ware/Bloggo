@@ -13,8 +13,14 @@ npm install -D typescript ts-node-dev vitest @types/express @vitest/ui
 ```
 
 ## Usage
-### To Run Tests
-### To Run App
+### FrontEnd
+---
+#### To Run Tests
+#### To Run Dev
+### BackEnd
+---
+#### To Run Tests
+#### To Run Dev
 
 If aiming for **zero third-party dependencies**, you can use **SQLite via the built-in `node:child_process` module** and call the `sqlite3` CLI directly, **but** that's:
 - Less portable (depends on having `sqlite3` installed on the machine)
@@ -36,3 +42,33 @@ Here's why **better-sqlite3** leads in order of popularity and quality, and has 
 import Database from 'better-sqlite3'
 const db = new Database('blog.db')
 ```
+
+## Deployment
+
+This project can be easily deployed on Render.com. Here's how to deploy both the frontend and backend:
+
+### Backend Deployment
+
+1. Create a new Web Service on Render
+2. Connect your GitHub repository
+3. Set the following:
+   - Build Command: `cd backend && npm install && npm run build`
+   - Start Command: `cd backend && npm start`
+   - Environment Variables:
+     - `NODE_ENV=production`
+
+### Frontend Deployment
+
+1. Create a new Static Site on Render
+2. Connect your GitHub repository
+3. Set the following:
+   - Build Command: `cd frontend && npm install && npm run build`
+   - Publish Directory: `frontend/dist`
+   - Environment Variables:
+     - `VITE_API_URL=https://your-backend-url.onrender.com`
+
+### Important Notes
+
+- Make sure to update the `VITE_API_URL` in the frontend deployment to point to your backend URL
+- The backend uses SQLite, which is suitable for development but consider using a production database like PostgreSQL for production
+- Both services will automatically redeploy when you push to your main branch
